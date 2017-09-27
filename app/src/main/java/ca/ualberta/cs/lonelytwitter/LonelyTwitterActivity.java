@@ -51,30 +51,12 @@ public class LonelyTwitterActivity extends Activity {
 				setResult(RESULT_OK);
 				String text = bodyText.getText().toString();
 
-				//NormalTweet newTweet= new NormalTweet("hello");
-				NormalTweet newTweet= new NormalTweet(bodyText.getText().toString());
+				NormalTweet newTweet= new NormalTweet(text);
 				tweetList.add(newTweet);
 
 				adapter.notifyDataSetChanged();
 				saveInFile();
-//				ImportantTweet newTweet2= new ImportantTweet("hello", new Date());
-//				newTweet2.getDate();
-//				try {
-//					newTweet.setMessage("bye");
-//				}catch (TweetToolongException e){
-//				}
-//				Log.d("tweet", newTweet.getMessage());
-//
-
-//				tweetList.add(newTweet2);
-//
-//				Happy morning=new Happy("happy");
-//				Sad noon=new Sad("sad");
-
-				//finish();
-
 			}
-
 		});
 		clearButton.setOnClickListener(new View.OnClickListener() {
 
@@ -98,7 +80,6 @@ public class LonelyTwitterActivity extends Activity {
 	}
 
 	private void loadFromFile() {
-//		ArrayList<String> tweets = new ArrayList<String>();
 		try {
 			FileInputStream fis=openFileInput(FILENAME);
 			BufferedReader in= new BufferedReader(new InputStreamReader(fis));
@@ -109,24 +90,13 @@ public class LonelyTwitterActivity extends Activity {
 			Type listType =new TypeToken<ArrayList<NormalTweet>>(){}.getType();
 			tweetList = gson.fromJson(in, listType);
 
-
-//			FileInputStream fis = openFileInput(FILENAME);
-//			BufferedReader in = new BufferedReader(new InputStreamReader(fis));
-//			String line = in.readLine();
-//			while (line != null) {
-//				tweets.add(line);
-//				line = in.readLine();
-//			}
-
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			tweetList= new ArrayList<tweet>();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-//			e.printStackTrace();
 			throw new RuntimeException();
 		}
-//		return tweets.toArray(new String[tweets.size()]);
 	}
 	
 	private void saveInFile() {
@@ -137,9 +107,6 @@ public class LonelyTwitterActivity extends Activity {
 			Gson gson = new Gson();
 			gson.toJson(tweetList,out);//convert java object to json string & save in output
 			out.flush();
-
-//			fos.write(new String(date.toString() + " | " + text)
-//					.getBytes());
 			fos.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
