@@ -1,10 +1,18 @@
 package ca.ualberta.cs.lonelytwitter;
 
 import java.util.Date;
+import  io.searchbox.annotations.JestId;
 
 public abstract class Tweet implements Tweetable {
     private String message;
     private Date date;
+
+    @JestId
+    private String id; //id for elasticsearch
+
+    public String getId(){return id;}
+
+    public String setId(String id){this.id=id;}
 
     public Tweet(String message){
         this.message = message;
@@ -43,4 +51,5 @@ public abstract class Tweet implements Tweetable {
     public Date getDate() {
         return date;
     }
+
 }
