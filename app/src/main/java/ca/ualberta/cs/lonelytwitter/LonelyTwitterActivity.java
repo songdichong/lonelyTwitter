@@ -62,8 +62,8 @@ public class LonelyTwitterActivity extends Activity {
 
 			public void onClick(View v) {
 				setResult(RESULT_OK);
-				tweetList.clear();
-				deleteFile(FILENAME);  // TODO deprecate this button
+				//tweetList.clear();
+				//deleteFile(FILENAME);  // TODO deprecate this button
 				adapter.notifyDataSetChanged();
 			}
 		});
@@ -77,12 +77,12 @@ public class LonelyTwitterActivity extends Activity {
 		super.onStart();
 		//loadFromFile(); // TODO replace this with elastic search
 		ElasticsearchTweetController.GetTweetsTask getTweetsTask = new ElasticsearchTweetController.GetTweetsTask();
-		getTweetsTask.execute("");
+		getTweetsTask.execute("q=message:hello");
 
 		try{
 			tweetList = getTweetsTask.get();
-		}catch (){
-
+		}catch (Exception e){
+			Log.i("Error","Failed to get the tweets from the asyc object.");
 		}
 		adapter = new ArrayAdapter<NormalTweet>(this,
 				R.layout.list_item, tweetList);

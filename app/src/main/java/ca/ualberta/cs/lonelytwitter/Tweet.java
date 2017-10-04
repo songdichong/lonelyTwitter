@@ -12,7 +12,7 @@ public abstract class Tweet implements Tweetable {
 
     public String getId(){return id;}
 
-    public String setId(String id){this.id=id;}
+    public String setId(String id){return this.id=id;}
 
     public Tweet(String message){
         this.message = message;

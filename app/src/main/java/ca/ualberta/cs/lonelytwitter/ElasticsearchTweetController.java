@@ -41,7 +41,6 @@ public class ElasticsearchTweetController {
                         tweet.setId(result.getId());
                     }else {
                         Log.i("error","elasticsearch was not able to add the tweet");
-
                     }
                 }
                 catch (Exception e) {
@@ -63,7 +62,7 @@ public class ElasticsearchTweetController {
 
                 // TODO Build the query
             //String query = "/testing/tweet";  bad to do so
-            Search search = new Search.Builder(search_parameters[0].addIndex("testing").addType("tweet").build());
+            Search search = new Search.Builder(search_parameters[0]).addIndex("testing").addType("tweet").build();
 
             try {
                // TODO get the results of the query
@@ -78,7 +77,6 @@ public class ElasticsearchTweetController {
             catch (Exception e) {
                 Log.i("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
             }
-
             return tweets;
         }
     }
