@@ -6,7 +6,7 @@ import android.widget.EditText;
 
 import com.robotium.solo.Solo;
 
-import junit.framework.TestCase;
+//import junit.framework.TestCase;
 
 public class LonelyTwitterActivityTest extends ActivityInstrumentationTestCase2<LonelyTwitterActivity> {
 
@@ -18,7 +18,7 @@ public class LonelyTwitterActivityTest extends ActivityInstrumentationTestCase2<
 
     /**
      * Runs before starting tests
-     * @throws Exception
+     * @throws Exception if does not setup successfully
      */
     public void setUp() throws Exception{
         solo = new Solo(getInstrumentation(),getActivity());
@@ -54,9 +54,13 @@ public class LonelyTwitterActivityTest extends ActivityInstrumentationTestCase2<
         solo.assertCurrentActivity("Wrong Activity",EditTweetActivity.class);
 
     }
+
+    public void testEditTweet(){
+
+    }
     /**
      * Runs after tests
-     * @throws Exception
+     * @throws Exception if does not end successfully
      */
     @Override
     public void tearDown() throws Exception{
